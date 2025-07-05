@@ -60,5 +60,22 @@ public class ROptional {
         Optional<Object> empty = Optional.empty();// empty
 
         objectOptional.ifPresentOrElse(ROptional::asPresent, ROptional::asNotPresent);
+
+        /**
+         * 使用Optional包装可能为空的对象，避免使用== null进行检查。
+         * 使用ifPresentOrElse处理可能为空的对象。
+         * 使用orElse和orElseGet提供默认值或默认操作。
+         * 使用orElseThrow抛出自定义异常。
+         */
+        empty.ifPresentOrElse(System.out::println, ROptional::asNotPresent);
+
+        // 如果当前值是存在的话, 即返回当前值, 如果不存在的话则返回1
+        empty.orElse(1);
+
+        //如果当前值存在的话, 返回, 否则返回Supply
+        empty.orElseGet(() -> 1);
+
+        //
+        empty.orElseThrow(() -> new RuntimeException("empty"));
     }
 }
