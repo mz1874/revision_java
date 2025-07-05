@@ -40,5 +40,27 @@ public class RFilter {
         Optional<Integer> reduce = arr.stream().reduce((a, b) -> a * b);
         reduce.ifPresent(System.out::println);
 
+
+        //使用Map 对原本集合进行映射
+        List<String> strings = arr.stream().map(String::valueOf).toList();
+        System.out.println(strings.get(0) instanceof String);
+
+        //对元素进行去重
+        arr.stream().distinct().forEach(System.out::println);
+
+        //跳过前两个元素
+        arr.stream().skip(2).forEach(System.out::println);
+
+
+        //匹配元素是否存在
+        if (arr.stream().anyMatch(number -> number == 2)) {
+            System.out.println("Matched");
+        }
+
+        //匹配最大元素
+        arr.stream().max(Integer::compareTo).ifPresent(System.out::println);
+
+
+
     }
 }
